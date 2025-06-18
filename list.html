@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list</title>
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="To do list" />
+    <link rel="stylesheet" href="list.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css"
+    />
+  </head>
+  <body>
+    <input type="checkbox" id="menu" />
+    <label for="menu">
+      <i class="fas fa-bars" id="bar"></i>
+    </label>
+    <div class="options">
+      <header>To-do</header>
+      <ul>
+        <li>
+          <a href="#" data-filter="Tasks"><i class="fas fa-home"></i>Tasks</a>
+        </li>
+        <li>
+          <a href="#" data-filter="Important"
+            ><i class="far fa-star"></i>Important</a
+          >
+        </li>
+        <li>
+          <a href="#" data-filter="Planned"
+            ><i class="far fa-address-book"></i>Planned</a
+          >
+        </li>
+        <li>
+          <a href="#" data-filter="Completed"
+            ><i class="fas fa-tasks"></i>Completed</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="schtask">
+      <div class="sbox">
+        <label for="st"><i class="fas fa-search"></i></label>
+        <label for="st" id="stask"></label>
+        <input type="text" id="st" placeholder="Search task" />
+      </div>
+      <button id="schbtn">Search</button>
+    </div>
+    <div class="background">
+      <div class="pro-box">
+        <div class="details">
+          <div class="text-wrap">
+            <h1>To do list</h1>
+            <p>Keep it up!!</p>
+            <div id="loadbar">
+              <div id="progress"></div>
+            </div>
+          </div>
+
+          <div class="progress-num">
+            <p id="numbers">0/0</p>
+          </div>
+        </div>
+      </div>
+      <form action="">
+        <input type="text" id="taskinput" placeholder="List your task" />
+        <button id="lists" type="submit">+Add</button>
+      </form>
+      <ul id="tasklist"></ul>
+    </div>
+    <!--<div class="taskitem">
+          <div class="task">
+               <input type="checkbox" class="checkbox">
+               <p>Finish this task</p>
+          </div>
+          <div class="icons">
+               <img src="./images/editicon.png">
+               <img src="./images/deleteicon.png">
+          </div>
+     </div>-->
+    <div class="searchbox">
+      <label id="search" for="searchdate">Filter task:</label>
+      <input type="date" id="searchdate" />
+      <button id="searchbtn">Filter</button>
+    </div>
+    <script src="list.js"></script>
+  </body>
+</html>
