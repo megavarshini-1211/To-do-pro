@@ -40,14 +40,7 @@
         </li>
       </ul>
     </div>
-    <div class="schtask">
-      <div class="sbox">
-        <label for="st"><i class="fas fa-search"></i></label>
-        <label for="st" id="stask"></label>
-        <input type="text" id="st" placeholder="Search task" />
-      </div>
-      <button id="schbtn">Search</button>
-    </div>
+    
     <div class="background">
       <div class="pro-box">
         <div class="details">
@@ -64,12 +57,46 @@
           </div>
         </div>
       </div>
-      <form action="">
-        <input type="text" id="taskinput" placeholder="List your task" />
-        <button id="lists" type="submit">+Add</button>
-      </form>
-      <ul id="tasklist"></ul>
+      <div class="task-controls">
+        <div class="task-row">
+          <div class="schtask">
+            <div class="sbox">
+              <label for="st"><i class="fas fa-search"></i></label>
+              <label for="st" id="stask"></label>
+              <input type="text" id="st" placeholder="Search task" />
+            </div>
+            <button id="schbtn">Search</button>
+          </div>
+          <div class="searchbox">
+            <label id="search" for="searchdate"></label>
+            <input type="date" id="searchdate" />
+            <button id="searchbtn">Filter</button>
+          </div>
+        </div>
+          <form action="">
+            <input type="text" id="taskinput" placeholder="List your task" />
+            <input type="datetime-local" id="dueinput" />
+            <button id="lists" type="submit">+Add</button>
+          </form>
+
+      </div>
+      <div class="kanban-board">
+        <div class="kanban-column" id="todo-column">
+          <h2>To Do</h2>
+          <ul id="todo-list" class="task-column-list"></ul>
+        </div>
+        <div class="kanban-column" id="inprogress-column">
+          <h2>In Progress</h2>
+          <ul id="inprogress-list" class="task-column-list"></ul>
+        </div>
+        <div class="kanban-column" id="done-column">
+          <h2>Done</h2>
+          <ul id="done-list" class="task-column-list"></ul>
+        </div>
+      </div>
+
     </div>
+      
     <!--<div class="taskitem">
           <div class="task">
                <input type="checkbox" class="checkbox">
@@ -80,11 +107,8 @@
                <img src="./images/deleteicon.png">
           </div>
      </div>-->
-    <div class="searchbox">
-      <label id="search" for="searchdate">Filter task:</label>
-      <input type="date" id="searchdate" />
-      <button id="searchbtn">Filter</button>
-    </div>
+     
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="list.js"></script>
   </body>
 </html>

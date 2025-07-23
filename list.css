@@ -18,6 +18,7 @@ body{
      margin-left: auto;
      margin-right: auto;
      position: relative;
+     z-index: 1;
 }
 .options{
      display: flex;
@@ -32,6 +33,7 @@ body{
      background-color: rgb(5, 11, 43);
      box-shadow: 0 8px 50px rgb(32, 52, 165);
      transition: 0.5s ease;
+     z-index: 2000;
 }
 .options ul li{
      list-style: none;
@@ -71,35 +73,43 @@ body{
 }
 
 label[for="menu"] {
-     position: fixed;
-     top: 10px;
-     left: 10px;
-     font-size: 20px;
-     color: white;
-     cursor: pointer;
-     z-index: 1000;
- }
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9998;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
  #menu:checked ~ .options {
      left: 0;
  }
  #menu{
      appearance: none;
-     top: 0;
+    position: fixed;         
+    top: 10px;
+    left: 10px;
+    width: 30px;             
+    height: 30px;            
+    z-index: 3000;           
+    opacity: 0;              
+    cursor: pointer;
+     
  }
-.pro-box{
-     border: 2px solid transparent;
-     background-color: rgb(5, 11, 43);
-     padding: 30px;
-     border-radius: 25px;
-     display: flex;
-     margin-bottom: 3rem;
-     justify-content: space-between;
-     width: 200%;
-     margin-left: 48%;
-
-     box-shadow: 0 8px 50px rgb(32, 52, 165);
-     align-items: center;
-     margin-top: 0;
+.pro-box {
+    border: 2px solid transparent;
+    background-color: rgb(5, 11, 43);
+    padding: 30px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 50px rgb(32, 52, 165);
+    width: 95vw;
+    box-sizing: border-box; 
 }
 .details{
      display: flex;
@@ -163,23 +173,101 @@ label[for="menu"] {
      position: absolute;
      left: 0;
 }
-form{
-     display: flex;  
-     gap: 15px; 
-     width:73rem;
-     margin-left: 18rem;
+
+.task-controls {
+    border: 2px solid transparent;
+    background-color: rgb(5, 11, 43);
+    padding: 2vw;
+    border-radius: 1.5vw;
+    box-shadow: 0 8px 50px rgb(32, 52, 165);
+    width: 90vw;
+    margin: 1rem 1rem 1rem 1rem;
+    box-sizing: border-box;  
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
 }
-form input,.searchbox input{
-     flex: 1;
-     width: 400px; 
-     height: 40px; 
-     padding: 10px; 
-     font-size: 16px; 
-     border: 2px solid rgb(233, 216, 247);
-     border-radius: 10px;
-     box-sizing: border-box;
-     background-color: rgb(233, 216, 247);
-     box-shadow: 0 3px 15px rgb(232, 202, 244);
+.task-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2vw;
+    width: 100%;
+}
+.schtask,.searchbox,form{
+    width: 100%;
+    
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1vw;
+    width: 100%;
+}
+.schtask,
+.searchbox {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    min-width: 300px;
+}
+form input,
+.searchbox input
+ {
+    flex: 1;
+    min-width: 200px;
+    height: 4vw;
+    max-height: 50px;
+    padding: 1vw;
+    font-size: clamp(14px, 1.5vw, 18px);
+    border: 2px solid rgb(233, 216, 247);
+    border-radius: 0.8vw;
+    background-color: rgb(233, 216, 247);
+    /* box-shadow: 0 3px 15px rgb(232, 202, 244); */
+    box-sizing: border-box;
+}
+#st {
+    flex: 1;
+    min-width: 250px;
+    height: 4vw;
+    max-height: 50px;
+    padding: 1vw;
+    font-size: clamp(14px, 1.5vw, 18px);
+    border: none; 
+    border-radius: 0.8vw;
+    background-color: rgb(233, 216, 247);
+    /* box-shadow: 0 3px 15px rgb(232, 202, 244); */
+    box-sizing: border-box;
+    outline: none; 
+
+}
+
+form button,
+.schtask button,
+.searchbox button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw 2vw;
+    font-size: clamp(10px, 1.2vw, 15px);
+    border-radius: 1vw;
+    border: none;
+    background-color: rgb(195, 55, 255);
+    color: white;
+    cursor: pointer;
+    /* box-shadow: 0 3px 15px rgb(186, 112, 218); */
+    transition: 0.3s;
+    white-space: nowrap; /* prevent wrap */
+    line-height: 1; /* ensure height consistency */
+    font-weight: 400;
+}
+form button:hover,
+.schtask button:hover,
+.searchbox button:hover {
+    background-color: rgb(64, 3, 90);
+    transform: scale(1.03);
 }
 button{
      display: inline-block;
@@ -202,7 +290,7 @@ button{
      color:rgb(255, 250, 250);
      background-color: rgb(195, 55, 255);
      height: auto;
-     box-shadow: 0 3px 15px rgb(186, 112, 218);
+     /* box-shadow: 0 3px 15px rgb(186, 112, 218); */
 }
 button:hover{
      background: rgb(64, 3, 90);
@@ -272,100 +360,104 @@ button:hover{
      text-shadow: 0 2px 2px rgb(178, 22, 245);
      transform: scale(1.2);
  }
-.taskitem{
-     width: 100%;
-     height: 60px;
-     display: flex;
-     background-color:  rgb(238, 200, 254);
-     padding: 5px;
-     border-radius: 5px;
-     box-shadow: 0 3px 20px rgb(195, 55, 255);
-     justify-content: space-between;
-     align-items: center;
+.taskitem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-#tasklist{
-     width: 190%;
-     margin-left: 48%;
-     display: flex;
-     flex-direction: column;
-     gap: 15px;
-     margin-top: 30px;
+#tasklist {
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 0;
 }
-#tasklist li{
-     list-style: none;
-     text-align: justify;
-     color: rgb(6, 1, 40);
-     font-size: 1.2rem;
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+#tasklist li {
+    list-style: none;
+    background-color: rgb(238, 200, 254);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(195, 55, 255, 0.3);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    word-wrap: break-word;
 }
-.icons img{
-     margin-top: 0;
-     cursor: pointer;
+.icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
 }
-.icons img:hover{
-     border-radius: 50px;
-     box-shadow: 0 3px 20px rgb(195, 55, 255);
+.icons img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
-.task{
-     display: flex;
-     align-items: center;
-     gap: 10px;
+.icons img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgb(195, 55, 255);
+    border-radius: 50%;
+}
+.task {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    flex: 1;
+    word-break: break-word;
+    flex-wrap: nowrap; 
+    min-width: 250px;
 }
 .task input{
      width: 20px;
      height: 20px;   
+}
+.task input.checkbox {
+    flex-shrink: 0;
+    margin-top: 3px;
 }
 .task.completed p {
      text-decoration: line-through;
      color: rgb(10, 209, 23);
 }
 .text-and-date {
-     display: flex;
-     flex-direction: column;
- }
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    font-size: clamp(14px, 1.2vw, 1rem);
+    color: rgb(6, 1, 40);
+    flex-grow: 1;
+    word-break: break-word;
+}
  
- .text-and-date p {
-     margin: 0; 
- }
+.text-and-date p {
+    margin: 0 0 5px 0;
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
   
  .text-and-date small {
      color: gray;
      font-size: 0.85rem; 
  }
-.searchbox {
-     margin-top: 0; 
-     margin-left: 50rem; 
-     display: flex;
-     align-items: center;
-     gap: 10px;
-     position: absolute; 
-     right: 30px; 
-     top: 30px;
- }
+
  #searchdate{
      width: 142px;
  }
-#search{
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-     font-size: 18px;
-     font-weight: bold;
-     color: rgb(255, 255, 255);
-     text-shadow: 0 3px 15px rgb(101, 216, 237);
-     margin-right: 10px;
+#search {
+    font-size: 1rem;
+    color: white;
+    text-shadow: 0 2px 8px rgb(101, 216, 237);
 }
-.schtask{
-     margin-left: 20rem;
-     margin-top: 1rem;
-     display: flex;
-}
-#st{
-     width: 34rem;
-     height: 2rem;
-     border: none;
-     outline: none;
-     background-color: rgb(233, 216, 247);
-     font-size: 16px;
-}
+
+
 .schtask button{
      margin-left: 8px;
 }
@@ -375,7 +467,7 @@ button:hover{
      border-radius: 10px;
      box-sizing: border-box;
      background-color: rgb(233, 216, 247);
-     box-shadow: 0 3px 15px rgb(232, 202, 244);
+     /* box-shadow: 0 3px 15px rgb(232, 202, 244); */
      border-radius: 10px;
      
 }
@@ -383,105 +475,273 @@ button:hover{
      color: black;
      padding-left: 7px;
 }
-@media screen and (max-width: 480px){
-     .background {
-       max-width: 85vw;
-       margin-top: 5.5rem;
-     }
-     .pro-box {
-       flex-direction: row;
-       padding: 20px;
-          display: flex;
-          margin-bottom: 2rem;
-          justify-content: space-between;
-          width: 100%;
-          align-items: center;
-          flex-wrap: wrap;
-          align-content: baseline;
-          
-     }
-     .details{
-          flex-direction: column;
-          padding: 20px;
-     }
-     .text-wrap{
-          display: flex;
-          flex-direction: column;
-          width: 80%;
-     }
-     
-     .text-wrap h1{
-          font-size: 30px;
-     }
-     
-     #loadbar{
-          width: 80%;
-          height: 10px;
-          display: flex;
-          flex-direction: column;
-          margin-top: 20px;
-          border-radius: 10px;
-          position: relative;
-     }
-     #progress{
-          width: 0%;
-          height: 10px;
-          border-radius: 10px;
-          transition: width 0.2s ease;
-          position: absolute;
-          left: 0;
-          display: flex;
-     }
-     
-     #numbers{
-          width: 80px;
-          height: 80px;
-          border-radius: 50px;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          font-size: 1.5rem;
-          
-     }
-     #search{
-          display: flex;
-          flex-direction: row;
-          padding: 10px;
-          font-size: small;
-     }
-     #search label{
-          display: flex;
-          flex-direction: column;
-     }
-     .searchbox{
-          display: flex; 
-          flex-direction: row;
-          position: absolute;
-          justify-content: center; 
-          align-items: flex-end; 
-          max-width: 30vw;
-          margin: 0 auto; 
-          top: 5px;
-          left: -10px;
-     }
-     #searchbtn{
-          display: flex;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-          font-size: small;
-     }
-     input{
-          flex: 1;
-          width: 285px; 
-          height: 40px; 
-          padding: 10px; 
-          font-size: 16px; 
-          border: 2px solid rgb(233, 216, 247);
-          border-radius: 50px;
-          box-sizing: border-box;
-          background-color: rgb(233, 216, 247);
-          box-shadow: 0 3px 15px rgb(232, 202, 244);
-     }
+.sbox input {
+    border: none;
+    background: transparent;
+    height: 4vw;
+    max-height: 45px; 
+    font-size: clamp(14px, 1.3vw, 18px);
+    padding-left: 0.5vw;
+    box-sizing: border-box;
+    color: black;
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-between;
+    gap: 2vw;
+    width: 95vw;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.kanban-column {
+    flex: 1 1 30%;
+    min-width: 280px;
+    background-color: rgb(5, 11, 43);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(32, 52, 165, 0.3);
+    padding: 1rem;
+    box-sizing: border-box;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.kanban-column h2 {
+    text-align: center;
+    font-size: clamp(18px, 2vw, 22px);
+    color: #fff;
+    text-shadow: 0 2px 8px rgb(101, 216, 237);
+    margin-bottom: 1rem;
+}
+
+.task-column-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.kanban-task {
+    background-color: rgb(238, 200, 254);
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 3px 10px rgba(195, 55, 255, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    cursor: grab;
+}
+.drag-ghost {
+    opacity: 0.4;
+    background-color: #ccc !important;
+}
+
+.kanban-task .task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 200px;
+    word-break: break-word;
+}
+
+.kanban-task .text-and-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(6, 1, 40);
+    font-size: clamp(14px, 1.2vw, 1rem);
+}
+
+.kanban-task .icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.kanban-task .icons img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.kanban-task .icons img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgb(195, 55, 255);
+    border-radius: 50%;
+}
+
+.task-alert {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(135deg, #f0c2ff, #d173ff);
+    color: rgb(38, 1, 53);
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(195, 55, 255, 0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: slideIn 0.5s ease-out;
+    min-width: 250px;
+    max-width: 80vw;
+}
+
+.task-alert p {
+    margin: 0;
+    font-weight: 600;
+    flex: 1;
+    word-break: break-word;
+}
+
+.task-alert button {
+    background-color: rgb(64, 3, 90);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.task-alert button:hover {
+    background-color: rgb(95, 14, 124);
+}
+
+@media screen and (min-width: 891px) {
+  #menu:checked ~ .background {
+    transform: translateX(250px) scale(0.78);
+    transition: transform 0.5s ease;
+    transform-origin: left center;
+  }
+}
+
+.background {
+    transition: transform 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#bar {
+  position: fixed; 
+  top: 10px;
+  left: 10px;
+  z-index: 10000; 
+  font-size: 24px;
+  color: white;
+  pointer-events: none; 
+}
+
+
+@media screen and (max-width: 890px) {
+    .task-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .schtask,
+    .searchbox,
+    form {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    form input,
+    .schtask input,
+    .searchbox input,
+    #st {
+        width: 100%;
+    }
+
+    form button,
+    .schtask button,
+    .searchbox button {
+        width: calc(100% - 1rem); 
+        padding: 12px;
+        align-items: center;
+    }
+
+    .kanban-board {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .kanban-column {
+        width: 100%;
+        max-width: 95vw;
+    }
+
+    .pro-box {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .details {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .text-wrap,
+    #loadbar {
+        width: 100%;
+    }
+
+    #numbers {
+        margin: 0 auto;
+    }
+
+    .sbox {
+        width: 100% !important;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+    }
+
+    .sbox input {
+        width: 100%;
+        max-width: 300px;
+        flex-grow: 1;
+        margin-right: 0.5rem;
+    }
+      #menu:checked ~ .background {
+        filter: blur(4px);
+        transition: filter 0.3s ease;
+        transform: none; 
+    }
+
+    .background {
+        transition: filter 0.3s ease;
+    }
 }
